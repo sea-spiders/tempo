@@ -1,6 +1,6 @@
 module.exports = {
     /* The password for the database. */
-    DB_PASSWORD: 'dAQs98txSZ_ucoRBYsUZYxwopArHE2ls',
+    DB_PASSWORD: 'hkMDROig8AmDlfav3m2XuF365IUdSKCh',
     GOOGLE_CLIENT_ID:
       '483750040191-lm1ckhp9spqbv469t5qvso11pgj6gupl.apps.googleusercontent.com',
     GOOGLE_CLIENT_SECRET: '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',

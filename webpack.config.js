@@ -32,5 +32,11 @@ module.exports = {
     port: 3000,
     static: path.resolve(__dirname, './dist'),
     historyApiFallback: true,
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:3000',
+    //     secure: false
+    //   }
+    // }
   },
 };
