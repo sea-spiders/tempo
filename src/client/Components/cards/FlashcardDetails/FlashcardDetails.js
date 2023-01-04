@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import styles from './flashCard.module.css';
+import styles from './flashcardDetails.module.css';
 import { useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import { json, useParams } from 'react-router-dom';
@@ -45,7 +45,7 @@ const FlashCard = () => {
       withCredentials: true,
       url: `http://localhost:8080/api/cards/${id}`,
     }).then((res) => {
-      window.location.href = `/library`;
+      window.location.href = `/home`;
     });
   };
 

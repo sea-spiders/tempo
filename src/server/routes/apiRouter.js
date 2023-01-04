@@ -35,8 +35,8 @@ router.get('/getAllDecks', deckController.getAllDecks, (req, res, next) => {
 });
 
 //create a deck
-router.post('/deck/:id', deckController.deleteDeck, (req, res, next) => {
-  res.status(200).json(res.locals.deleteDeck);
+router.post('/deck', deckController.createDeck, (req, res, next) => {
+  res.status(200).json(res.locals.createDeck);
 })
 //delete a deck
 router.delete('/deck/:id', deckController.deleteDeck, (req, res, next) => {

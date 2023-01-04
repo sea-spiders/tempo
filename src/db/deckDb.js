@@ -19,23 +19,15 @@ deck.readAllDecks = async () => {
 // When clicking a Create deck you can choose a Title
 deck.createDeck = async (args) => {
     try {
-      // this is the current time in format 2022-12-28 12:34:56
-      const currentTime = new Date();
-      const formattedTime = currentTime
-        .toISOString()
-        .slice(0, 19)
-        .replace('T', ' ');
-  
       // parameterize sql arguments to prevent attacks
       const arr = [
         Number(args['user_id']),
         args['title'],
-        args['scheduled'] === undefined ? formattedTime : args['scheduled'], // args['scheduled'] should have format 2022-12-28 12:34:56
       ];
-  
+
       const sql = `INSERT INTO decks
-      (user_id, title, scheduled)
-      VALUES ($1, $2, $3)
+      (user_id, title)
+      VALUES ($1, $2)
       RETURNING *;`;
       // execute sql command
       const data = await pool.query(sql, arr);

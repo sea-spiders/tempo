@@ -14,7 +14,7 @@ router.get('/google', passport.authenticate('google', { scope: ['email'] }));
 router.get('/google/callback', passport.authenticate('google', {failureRedirect: '/auth/failure'}),
   (req, res) => {
     // Success
-    return res.redirect('/library');
+    return res.redirect('/home');
   }
 );
 

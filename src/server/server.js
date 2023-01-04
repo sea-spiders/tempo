@@ -25,14 +25,7 @@ app.use(passport.authenticate('session'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// To get around CORS we normally set response header Access-Control-Allow-Origin --> '*'
-// For example:
-//      app.use((req, res, next) => {
-//        res.header('Access-Control-Allow-Origin', 'http://localhost:5000/');
-//        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//        res.header('Access-Control-Allow-Headers', 'Content-Type');
-//        next();
-//      });
+// To get around CORS we normally set response header 
 // However, when ussing cookies many browsers do not allow Access-Control-Allow-Origin '*'
 // Instead, we use the 'cors' npm module.
 app.use(
@@ -42,6 +35,7 @@ app.use(
   })
 );
 
+// Static index file
 app.get('/', (req, res, next) => {
   res.sendFile(path.resolve(__dirname, './dist/index.html'));
 });
