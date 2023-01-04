@@ -2,20 +2,23 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+import DeckCard from '../DeckCard/DeckCard'
 import styles from './decksContainer.module.css';
 
 const DecksContainer = () => {
   const [decksArr, setDecksArr] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/getAllDecks').then(res => setDecksArr(res.data));
+    axios.get('/api/getAllDecks')
+      .then(res => setDecksArr(res.data));
   }, []);
 
   return (
     <>
       <div id={styles.decksContainer}>
         {decksArr.map((deck) => (
-          <Deck deckDetails={deck} key={uuid()} />
+          <DeckCard deckDetails={deck} key={uuid()} />
+          // if uuid() not working-- use uuidv4()
         ))}
       </div>
       <div id={styles.createNewDeckBtn}>

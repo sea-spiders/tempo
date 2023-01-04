@@ -51,18 +51,25 @@ CREATE TABLE GoogleUserInfo
  email_verified BOOLEAN NULL
 );
 
-CREATE TABLE Cards (
+CREATE TABLE decks (
    _id SERIAL PRIMARY KEY,
    user_id INTEGER REFERENCES GoogleUserInfo (_id) NOT NULL,
-   title TEXT NULL,
-   front TEXT NOT NULL,
-   back TEXT NOT NULL,
-   difficulty REAL NULL,
-   hints TEXT NULL,
-   scheduled TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   title varchar(255) NOT NULL,
+   created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Tags (
+
+CREATE TABLE cards (
+   _id SERIAL PRIMARY KEY,
+   user_id INTEGER REFERENCES GoogleUserInfo (_id) NOT NULL,
+   title varchar(255) NOT NULL,
+   front TEXT NOT NULL,
+   back TEXT NOT NULL,
+   deck_id INTEGER REFERENCES decks (_id) NOT NULL,
+   created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tags (
    _id SERIAL PRIMARY KEY,
    text TEXT NULL
 );

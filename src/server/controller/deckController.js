@@ -22,17 +22,16 @@ deckController.getAllDecks = async (req, res, next) => {
 deckController.createDeck = async (req, res, next) => {
     try {
       // sanitize post data
-      const { user_id, title, scheduled } =
-        req.body;
+      const { 
+        user_id, 
+        title,
+      } = req.body;
       const data = {
         user_id, 
         title,
-        scheduled,
       };
   
-      console.log('creating data: ', data);
       const row = await deckDb.createDeck(data);
-    
       res.locals.createDeck = row;
   
       return next();

@@ -3,17 +3,17 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setEmail, setPicture } from './Redux/slices/userSlice';
-import LandingPage from './Components/LandingPage/LandingPage';
-import Home from './Components/Home/Home';
-import Navbar from './Components/Navbar/Navbar';
-import DecksContainer from './Components/DecksContainer/DecksContainer';
-import CreateDeck from './Components/CreateDeck/CreateDeck';
-import CreateCard from './Components/CreateCard/CreateCard';
-import FlashCard from './Components/ShowCard/FlashCards';
+import LandingPage from './Components/pages/LandingPage/LandingPage';
+import Home from './Components/pages/Home/Home';
+import Navbar from './Components/global/Navbar/Navbar';
+import DecksContainer from './Components/cards/DecksContainer/DecksContainer';
+import CreateDeck from './Components/create/CreateDeck/CreateDeck';
+import CreateCard from './Components/create/CreateCard/CreateCard';
+import FlashCard from './Components/cards/FlashcardDetails/FlashcardDetails';
 
 const App = () => {
   const leftItems = {
-    home: '/library',
+    home: '/home',
   };
 
   // On first render, get user data
@@ -38,13 +38,16 @@ const App = () => {
         <LandingPage />
       ) : (
         <BrowserRouter>
-          {/* Component 'Navbar' must be placed within browser router so that navbar links work */}
-          <Navbar leftItems={leftItems} />
+            {/* Component 'Navbar' must be placed within browser router so that navbar links work */}
+          {/* <Navbar leftItems={leftItems} /> */}
+            {/* {location.pathname !== '/' && <Navbar />} */}
+            <Navbar leftItems={leftItems} />
+
           <div>
             <Routes>
-              <Route exact path="/" element={<LandingPage />} />
-              <Route exact path="/library" element={<Home />} />
-              <Route exact path="/decks" element={<DecksContainer />} />
+                <Route exact path="/" element={<LandingPage />} />
+                {/* Home: shows DecksContainer */}
+              <Route exact path="/home" element={<Home />} />
               <Route exact path="/createDeck" element={<CreateDeck />} />
               <Route exact path="/createCard" element={<CreateCard />} />
               <Route exact path="/flashcard/:id" element={<FlashCard />} />

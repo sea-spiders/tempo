@@ -7,14 +7,14 @@ const CreateDeck = () => {
   const navigate = useNavigate();
 
   function addDeckToDB() {
-    fetch('/api/addDeck', {
+    fetch('/api/deck', {
       method: 'POST',
       body: JSON.stringify({ deckName }),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(() => navigate('/decks')).catch(e => console.log('ERROR:', e))
+    }).then(() => navigate('/createDeck')).catch(e => console.log('ERROR:', e))
   }
 
   return (
