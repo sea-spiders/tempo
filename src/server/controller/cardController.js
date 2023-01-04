@@ -56,6 +56,7 @@ cardController.getCard = async (req, res, next) => {
 }
 
 cardController.getAllCards = async (req, res, next) => {
+
   try {
     const row = await db.readAllCards();
 

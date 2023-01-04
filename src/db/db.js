@@ -15,7 +15,7 @@ obj.readCard = async (id) => {
   }
 };
 
-obj.readAllcards = async () => {
+obj.readAllCards = async () => {
   try {
     const sql = `SELECT *
     FROM cards;`;
