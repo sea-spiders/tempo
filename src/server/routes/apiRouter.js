@@ -11,7 +11,8 @@ router.get('/cards/:id', cardController.getCard, (req, res, next) => {
   res.status(200).json(res.locals.getCard);
 });
 
-router.get('/cards', cardController.getAllCards, (req, res, next) => {
+router.get('/getAllCards', cardController.getAllCards, (req, res, next) => {
+  console.log(res.locals.getAllCards)
   res.status(200).json(res.locals.getAllCards);
 });
 

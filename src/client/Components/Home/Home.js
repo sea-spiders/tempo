@@ -9,14 +9,7 @@ const Home = () => {
   const [arrCards, setArrCards] = useState([]);
 
   useEffect(() => {
-    // we cannot use async/await in useEffect without wrapping in outer function
-    const response = axios({
-      method: 'get',
-      withCredentials: true,
-      url: 'http://localhost:8080/api/cards',
-    }).then((res) => {
-      setArrCards(res.data);
-    });
+    axios.get('/api/getAllCards').then(res => setArrCards(res.data));
   }, []);
 
   return (
