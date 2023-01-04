@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../../db/db.js'); 
 const cardController = require('../controller/cardController');
+const deckController = require('../controller/deckController');
+
+//CARD ROUTES
 
 router.get('/cards/nextCard/:id', cardController.nextCard, (req, res, next) => {
   res.status(200).json(res.locals.nextCard);
@@ -22,6 +24,23 @@ router.post('/cards', cardController.createCard, (req, res, next) => {
 
 router.delete('/cards/:id', cardController.deleteCard, (req, res, next) => {
   res.status(200).json(res.locals.deleteCard);
+})
+
+// DECK ROUTES
+
+// see all decks
+router.get('/getAllDecks', deckController.getAllDecks, (req, res, next) => {
+  console.log(res.locals.getAllDecks)
+  res.status(200).json(res.locals.getAllDecks);
+});
+
+//create a deck
+router.post('/deck/:id', deckController.deleteDeck, (req, res, next) => {
+  res.status(200).json(res.locals.deleteDeck);
+})
+//delete a deck
+router.delete('/deck/:id', deckController.deleteDeck, (req, res, next) => {
+  res.status(200).json(res.locals.deleteDeck);
 })
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const db = require('../../db/db')
+const cardDb = require('../../db/cardDb');
 
 const cardController = {};
 
@@ -8,7 +8,7 @@ cardController.nextCard = async (req, res, next) => {
     console.log('just checking')
 
     const _id = req.params.id;
-    const row = await db.readAllCards();
+    const row = await cardDb.readAllCards();
     const ids = row.map(element => {
       return element._id; 
     })
@@ -38,7 +38,7 @@ cardController.nextCard = async (req, res, next) => {
 cardController.getCard = async (req, res, next) => {
   try {
     const _id = req.params.id;
-    const row = await db.readCard(_id);
+    const row = await cardDb.readCard(_id);
     // no card found
     // if (row === undefined) throw `no card with id=${_id} found`;
     if (row === undefined) next(err);
@@ -56,9 +56,10 @@ cardController.getCard = async (req, res, next) => {
 }
 
 cardController.getAllCards = async (req, res, next) => {
-
+  console.log('inside cardController.getAllCards');
   try {
-    const row = await db.readAllCards();
+    console.log('inside the Try cardController.getAllCards');
+    const row = await cardDb.readAllCards();
 
     // res status here
     res.locals.getAllCards = row;
@@ -88,7 +89,7 @@ cardController.createCard = async (req, res, next) => {
     };
 
     console.log('creating data: ', data);
-    const row = await db.createCard(data);
+    const row = await cardDb.createCard(data);
   
     res.locals.createCard = row;
 
@@ -128,7 +129,7 @@ cardController.createCard = async (req, res, next) => {
 cardController.deleteCard = async (req, res, next) => {
   try {
     const _id = req.params.id; 
-    const row = await db.deleteCard(_id); 
+    const row = await cardDb.deleteCard(_id); 
 
     // no card found
     // if (row === undefined) throw `no card with id=${_id} found`;
