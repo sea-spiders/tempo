@@ -1,0 +1,20 @@
+#createNewDeckBtn {
+  background-color: #8fa582;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  width: 10%;
+  text-align: center;
+  margin: auto;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+#createNewDeckBtn a {
+  color: white;
+}
+
+#deckContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

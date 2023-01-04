@@ -1,0 +1,35 @@
+#deckInputContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#deckNameInput {
+  margin-top: 100px;
+  margin-bottom: 15px;
+  padding: 10px 10px;
+  width: 50%;
+  background: #eae9e7;
+  text-align: center;
+}
+
+#addDeckBtn {
+  margin-bottom: 15px;
+  padding: 10px 10px;
+  width: 20%;
+  background: #8fa582;
+  color: white;
+  font-weight: bold;
+}
+
+#addDeckBtn:hover {
+  background: white;
+  color: #8fa582;
+  width: 18%;
+}
+
+#addDeckBtn span {
+  font-weight: bolder;
+  font-size: 1.2rem;
+}

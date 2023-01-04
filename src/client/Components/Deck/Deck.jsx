@@ -1,15 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Card from '../Card/Card';
-import { v4 as uuid } from 'uuid';
-import styles from './home.module.css';
 import { Link } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
+import Card from './Card';
+import styles from './home.module.css';
 
-const Home = () => {
-  const [arrCards, setArrCards] = useState([]);
+const Deck = ({ deckDeatils }) => {
+  const [cardsArr, setCardsArr] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/getAllCards').then(res => setArrCards(res.data));
+    axios.get(`/api/getCardsInDeck/${deckDetails.id}`).then(res => cardsArr(res.data));
   }, []);
 
   return (
@@ -20,7 +20,7 @@ const Home = () => {
         </Link>
       </div>
       <div id={styles.cardsContainer}>
-        {arrCards.map((card) => (
+        {cardsArr.map((card) => (
           <Card data={card} key={uuid()} />
         ))}
       </div>
@@ -28,4 +28,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Deck;
