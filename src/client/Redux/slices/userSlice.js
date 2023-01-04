@@ -11,10 +11,13 @@ export const userSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload;
     },
+    setPicture: (state, action) => {
+      state.picture = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setEmail } = userSlice.actions;
+export const { setEmail, setPicture } = userSlice.actions;
 
 export default userSlice.reducer;

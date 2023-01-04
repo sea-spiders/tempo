@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './navbar.module.css';
 import { useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
+import UserProfile from './UserProfile';
 
 const Navbar = ({ leftItems }) => {
   // This is how you interact with Redux store with hooks
@@ -38,6 +39,7 @@ const Navbar = ({ leftItems }) => {
           </div>
         </div>
       )}
+      <UserProfile />
     </>
   );
 };
