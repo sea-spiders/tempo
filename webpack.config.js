@@ -29,8 +29,18 @@ module.exports = {
     filename: 'bundle.js',
   },
   devServer: {
-    port: 3000,
+    port: 8080,
     static: path.resolve(__dirname, './dist'),
     historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        secure: false
+      },
+      '/auth': {
+        target: 'http://localhost:3000',
+        secure: false
+      }
+    }
   },
 };

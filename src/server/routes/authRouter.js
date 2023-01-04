@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-require('./auth.js');
 const passport = require('passport');
+require('../auth.js');
 
 router.get('/user', (req, res) => {
   // req.user is the parsed jwt containing user information
@@ -11,13 +11,9 @@ router.get('/user', (req, res) => {
 
 router.get('/google', passport.authenticate('google', { scope: ['email'] }));
 
-router.get(
-  '/google/callback',
-  passport.authenticate('google', {
-    failureRedirect: '/auth/failure',
-  }),
+router.get('/google/callback', passport.authenticate('google', {failureRedirect: '/auth/failure'}),
   (req, res) => {
-    // success
+    // Success
     return res.redirect('/library');
   }
 );

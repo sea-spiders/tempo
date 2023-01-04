@@ -1,9 +1,9 @@
-const db = require('../db/db.js');
-const express = require('express');
-const router = express.Router();
+const db = require('../../db/db')
 
-router.get('/cards/nextCard/:id', async (req, res, next) => {
-  try {
+const cardController = {};
+
+cardController.nextCard = async (req, res, next) => {
+    try {
 
     console.log('just checking')
 
@@ -12,49 +12,56 @@ router.get('/cards/nextCard/:id', async (req, res, next) => {
     const ids = row.map(element => {
       return element._id; 
     })
-
-    console.log('ids', ids)
+    console.log('ids', ids);
 
     let idx = ids.findIndex((element) => {
       return element === Number(_id);  
     }); 
-
-    console.log('idx', idx)
+    
+    console.log('idx', idx);
 
     const newIdx = (idx + 1) % ids.length; 
 
     console.log('newIdx', newIdx)
 
-    res.status(200).json(row[newIdx]._id);
+    res.locals.nextCard = row[newIdx]._id
+    return next();
   } catch (err) {
-    next({
-      log: 'error getting cards',
-      status: 500,
-      message: { err: err },
-    });
-  }
-})
+      next({
+        log: 'error getting cards',
+        status: 500,
+        message: { err: err },
+      });
+    }
+}
 
-router.get('/cards/:id', async (req, res, next) => {
+cardController.getCard = async (req, res, next) => {
   try {
     const _id = req.params.id;
     const row = await db.readCard(_id);
     // no card found
-    if (row === undefined) throw `no card with id=${_id} found`;
-    res.status(200).json(row);
-  } catch (err) {
-    next({
-      log: 'error getting single card',
-      status: 500,
-      message: { err: err },
-    });
-  }
-});
+    // if (row === undefined) throw `no card with id=${_id} found`;
+    if (row === undefined) next(err);
+    
+    res.locals.getCard = row;
+    return next();
 
-router.get('/cards', async (req, res, next) => {
+  } catch (err) {
+      next({
+        log: 'error getting single card',
+        status: 500,
+        message: { err: err },
+      });
+  }
+}
+
+cardController.getAllCards = async (req, res, next) => {
   try {
     const row = await db.readAllCards();
-    res.status(200).json(row);
+
+    // res status here
+    res.locals.getAllCards = row;
+    return next();
   } catch (err) {
     next({
       log: 'error getting cards',
@@ -62,9 +69,9 @@ router.get('/cards', async (req, res, next) => {
       message: { err: err },
     });
   }
-});
+}
 
-router.post('/cards', async (req, res, next) => {
+cardController.createCard = async (req, res, next) => {
   try {
     // sanitize post data
     const { user_id, title, front, back, difficulty, hints, scheduled } =
@@ -81,7 +88,11 @@ router.post('/cards', async (req, res, next) => {
 
     console.log('creating data: ', data);
     const row = await db.createCard(data);
-    res.status(200).json(row);
+  
+    res.locals.createCard = row;
+
+    return next();
+    
   } catch (err) {
     next({
       log: 'error creating card',
@@ -89,10 +100,11 @@ router.post('/cards', async (req, res, next) => {
       message: { err: err },
     });
   }
-});
+}
 
-router.put('/cards/:id', async (req, res, next) => {
-  try {
+/*
+//cardController.updateCard = (req, res, next) => {
+    try {
 
     const { _id, user_id, title, front, back, difficulty, hints, scheduled } = req.body; 
     const data = { _id, user_id, title, front, back, difficulty, hints, scheduled }; 
@@ -109,16 +121,19 @@ router.put('/cards/:id', async (req, res, next) => {
       message: { err: err }, 
     }); 
   }
-})
+}
+*/
 
-router.delete('/cards/:id', async (req, res, next) => {
+cardController.deleteCard = async (req, res, next) => {
   try {
-
     const _id = req.params.id; 
     const row = await db.deleteCard(_id); 
-    if(row === undefined) throw `no card with id=${_id} was not found`; 
-    res.status(200).json(row);  
-    console.log('deleted sucessfully') 
+
+    // no card found
+    // if (row === undefined) throw `no card with id=${_id} found`;
+    if (row === undefined) next(err);
+
+    res.locals.deleteCard = row;
     return next(); 
 
   } catch(err) {
@@ -128,6 +143,6 @@ router.delete('/cards/:id', async (req, res, next) => {
       message: { err: err }, 
     }); 
   }
-})
+}
 
-module.exports = router;
+module.exports = cardController;

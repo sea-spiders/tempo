@@ -3,7 +3,8 @@ const { Pool } = require('pg');
 const { DB_PASSWORD } = require(path.resolve(__dirname, '../../secrets.js'));
 
 // TODO: move thi to secrets.js
-const PG_URI = `postgres://tekdpxxk:${DB_PASSWORD}@mahmud.db.elephantsql.com/tekdpxxk`;
+const PG_URI = `postgres://ybcnlaqk:${DB_PASSWORD}@berry.db.elephantsql.com/ybcnlaqk`;
+
 
 // This pools multiple db accesses into one request
 const pool = new Pool({

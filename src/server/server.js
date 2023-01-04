@@ -1,17 +1,17 @@
 const path = require('path');
-const express = require('express');
-const apiRouter = require('./apiRouter.js');
-const authRouter = require('./authRouter.js');
 const passport = require('passport');
+const express = require('express');
 const cors = require('cors');
+const apiRouter = require('./routes/apiRouter.js');
+const authRouter = require('./routes/authRouter.js');
 
-const session = require('express-session'); // required for oauth session
+const session = require('express-session'); // Required for OAuth Session
 
 const { SESSION_SECRET } = require('../../secrets.js');
 const app = express();
-const PORT = 8080;
+const PORT = 3000;
 
-// session middle parses the oauth jwt
+// Session middle parses the OAuth JWT
 app.use(
   session({
     secret: SESSION_SECRET,
@@ -22,7 +22,6 @@ app.use(
 
 app.use(passport.authenticate('session'));
 
-// required for post data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -43,19 +42,15 @@ app.use(
   })
 );
 
-app.get('/', (req, res) => {
-  res.status(200).redirect('http://localhost:3000/');
+app.get('/', (req, res, next) => {
+  res.sendFile(path.resolve(__dirname, './dist/index.html'));
 });
 
-app.get('/library', (req, res) => {
-  res.status(200).redirect('http://localhost:3000/library');
-});
-
-// routers
+// Routers
 app.use('/api', apiRouter);
 app.use('/auth', authRouter);
 
-// global error handler
+// Global Error Handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
@@ -66,7 +61,7 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj);
 });
 
-// start server
+// Start server
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });

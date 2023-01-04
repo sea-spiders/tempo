@@ -5,7 +5,7 @@ const obj = {};
 obj.readCard = async (id) => {
   try {
     const sql = `SELECT *
-    FROM Cards
+    FROM cards
     WHERE _id=$1;`;
     const data = await pool.query(sql, [id]);
     // TODO: validate that there is only one row
@@ -15,10 +15,10 @@ obj.readCard = async (id) => {
   }
 };
 
-obj.readAllCards = async () => {
+obj.readAllcards = async () => {
   try {
     const sql = `SELECT *
-    FROM Cards;`;
+    FROM cards;`;
     const data = await pool.query(sql);
     return data.rows;
   } catch (err) {
@@ -41,12 +41,14 @@ obj.createCard = async (args) => {
       args['title'],
       args['front'],
       args['back'],
-      Number(args['difficulty']),
-      args['hints'],
+      null,
+      null,
+      // Number(args['difficulty']),
+      // args['hints'],
       args['scheduled'] === undefined ? formattedTime : args['scheduled'], // args['scheduled'] should have format 2022-12-28 12:34:56
     ];
 
-    const sql = `INSERT INTO Cards
+    const sql = `INSERT INTO cards
     (user_id, title, front, back, difficulty, hints, scheduled)
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *;`;
@@ -62,7 +64,7 @@ obj.updateCard = async (args) => {
   try {
     // console.log('checking for update'); 
     // console.log(args); 
-    const selectUserSQL = ` SELECT * FROM Cards WHERE _id=$1`;
+    const selectUserSQL = ` SELECT * FROM cards WHERE _id=$1`;
     const data1 = await pool.query(selectUserSQL, [Number(args['_id'])]);
     console.log('data1', data1.rows[0]); 
 
@@ -77,7 +79,7 @@ obj.updateCard = async (args) => {
       args['scheduled'] === undefined ? data1.rows[0].scheduled : args['scheduled'],
     ];
 
-    const updateUserSQL = ` UPDATE Cards
+    const updateUserSQL = ` UPDATE cards
     SET title = $3,
     user_id = $2, 
     front = $4,
@@ -97,7 +99,7 @@ obj.updateCard = async (args) => {
 obj.deleteCard = async (id) => {
   try {
 
-    sql = `DELETE FROM Cards WHERE _id=$1 RETURNING *`; 
+    sql = `DELETE FROM cards WHERE _id=$1 RETURNING *`; 
     const data = await pool.query(sql, [id]);
     return data.rows[0]; 
 
