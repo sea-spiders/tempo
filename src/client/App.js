@@ -6,7 +6,7 @@ import Navbar from './Components/Navbar/Navbar';
 import FlashCard from './Components/ShowCard/FlashCards';
 import LandingPage from './Components/LandingPage/LandingPage';
 import { useSelector, useDispatch } from 'react-redux';
-import { setEmail } from './Redux/slices/userSlice';
+import { setEmail, setPicture } from './Redux/slices/userSlice';
 import axios from 'axios';
 const App = () => {
   const leftItems = {
@@ -23,6 +23,7 @@ const App = () => {
     }).then((res) => {
       if (res.data) {
         dispatch(setEmail(res.data.email));
+        dispatch(setPicture(res.data.picture));
       }
     });
   }, []);
