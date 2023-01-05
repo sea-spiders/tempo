@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './deckCard.module.css';
 
-const Deck = ({ deckDetails }) => {
+const DeckCard = ({ deckDetails }) => {
+  console.log(deckDetails._id)
   return (
     <>
       <div>
-        <Link to={`/deckpage/${deckDetails._id}`} >
+        <Link to='/deck-page' state={{ deckId: deckDetails._id }}>
           <div className={`${styles.backgroundGrey}`}>
             <div className={`${styles.title}`}>{deckDetails.title}</div>
           </div>
@@ -16,4 +17,4 @@ const Deck = ({ deckDetails }) => {
   );
 };
 
-export default Deck;
+export default DeckCard;

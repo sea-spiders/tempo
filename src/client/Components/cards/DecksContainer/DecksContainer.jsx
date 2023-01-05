@@ -18,7 +18,6 @@ const DecksContainer = () => {
       <div id={styles.decksContainer}>
         {decksArr.map((deck) => (
           <DeckCard deckDetails={deck} key={uuid()} />
-          // if uuid() not working-- use uuidv4()
         ))}
       </div>
       <div id={styles.createNewDeckBtn}>
