@@ -1,16 +1,19 @@
+import axios from 'axios';
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Home from './Components/Home/Home';
-import CreateCard from './Components/CreateCard/CreateCard';
-import Navbar from './Components/Navbar/Navbar';
-import FlashCard from './Components/ShowCard/FlashCards';
-import LandingPage from './Components/LandingPage/LandingPage';
 import { useSelector, useDispatch } from 'react-redux';
-import { setEmail } from './Redux/slices/userSlice';
-import axios from 'axios';
+import { setEmail, setPicture } from './Redux/slices/userSlice';
+import LandingPage from './Components/pages/LandingPage/LandingPage';
+import Home from './Components/pages/Home/Home';
+import Navbar from './Components/global/Navbar/Navbar';
+import CreateDeck from './Components/create/CreateDeck/CreateDeck';
+import CreateCard from './Components/create/CreateCard/CreateCard';
+import FlashCard from './Components/cards/FlashcardDetails/FlashcardDetails';
+import DeckPage from './Components/pages/DeckPage/DeckPage';
+
 const App = () => {
   const leftItems = {
-    home: '/library',
+    home: '/home',
   };
 
   // On first render, get user data
@@ -19,10 +22,11 @@ const App = () => {
     const response = axios({
       method: 'get',
       withCredentials: true,
-      url: 'http://localhost:8080/auth/user',
+      url: '/auth/user',
     }).then((res) => {
       if (res.data) {
         dispatch(setEmail(res.data.email));
+        dispatch(setPicture(res.data.picture));
       }
     });
   }, []);
@@ -34,13 +38,19 @@ const App = () => {
         <LandingPage />
       ) : (
         <BrowserRouter>
-          {/* Component 'Navbar' must be placed within browser router so that navbar links work */}
-          <Navbar leftItems={leftItems} />
+            {/* Component 'Navbar' must be placed within browser router so that navbar links work */}
+          {/* <Navbar leftItems={leftItems} /> */}
+            {/* {location.pathname !== '/' && <Navbar />} */}
+            <Navbar leftItems={leftItems} />
+
           <div>
             <Routes>
-              <Route exact path="/" element={<LandingPage />} />
-              <Route exact path="/library" element={<Home />} />
+                <Route exact path="/" element={<LandingPage />} />
+                {/* Home: shows DecksContainer */}
+              <Route exact path="/home" element={<Home />} />
+              <Route exact path="/createDeck" element={<CreateDeck />} />
               <Route exact path="/createCard" element={<CreateCard />} />
+              <Route exact path="/deck-page" element={<DeckPage />} />
               <Route exact path="/flashcard/:id" element={<FlashCard />} />
             </Routes>
           </div>
