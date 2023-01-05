@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import DeckCard from '../DeckCard/DeckCard'
 import styles from './decksContainer.module.css';
+import globalStyles from '../../global/globalStyles.module.css'
 
 const DecksContainer = () => {
   const [decksArr, setDecksArr] = useState([]);
@@ -15,15 +16,15 @@ const DecksContainer = () => {
 
   return (
     <>
-      <div id={styles.decksContainer}>
-        {decksArr.map((deck) => (
-          <DeckCard deckDetails={deck} key={uuid()} />
-        ))}
-      </div>
-      <div id={styles.createNewDeckBtn}>
+      <div id={globalStyles.createNewBtn}>
         <Link to='/createDeck'>
           Create New Deck <strong>+</strong>
         </Link>
+      </div>
+      <div id={globalStyles.cardsContainer}>
+        {decksArr.map((deck) => (
+          <DeckCard deckDetails={deck} key={uuid()} />
+        ))}
       </div>
     </>
   );

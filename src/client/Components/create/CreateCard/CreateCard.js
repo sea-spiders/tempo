@@ -1,7 +1,7 @@
-import styles from './CreateCard.module.css';
-// import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './CreateCard.module.css';
+import globalStyles from '../../global/globalStyles.module.css'
 
 const CreateCard = () => {
   const [front, setFront] = useState('');
@@ -12,8 +12,7 @@ const CreateCard = () => {
   function cb() {
     fetch('8080/api/cards', {
       method: 'POST',
-      // FIX USER ID----------------------------------------
-      body: JSON.stringify({ front, user_id: 1, back, title }),
+      body: JSON.stringify({ front, back, title }),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -23,23 +22,23 @@ const CreateCard = () => {
 
   return (
     <>
-      <div id={styles.cardInputs}>
+      <div id={globalStyles.inputsContainer}>
         <input
           id={styles.cardTitle}
           onChange={(e) => setTitle(e.target.value)}
           placeholder='Enter Card Title Here'
         ></input>
         <input
-          id={styles.cardFront}
+          id={globalStyles.inputBoxes}
           onChange={(e) => setFront(e.target.value)}
           placeholder='Enter Question Here'
         ></input>
         <input
-          id={styles.cardBack}
+          id={globalStyles.inputBoxes}
           onChange={(e) => setback(e.target.value)}
           placeholder='Enter Answer Here'
         ></input>
-        <button id={styles.addCardBtn} onClick={cb}>
+        <button id={globalStyles.addBtn} onClick={cb}>
           Add Card <span>&#43;</span>
         </button>
       </div>

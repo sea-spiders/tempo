@@ -1,4 +1,4 @@
-#createNewDeckBtn {
+#createNewBtn {
   background-color: #8fa582;
   color: white;
   font-family: 'Roboto', sans-serif;
@@ -9,11 +9,11 @@
   margin-bottom: 15px;
 }
 
-#createNewDeckBtn a {
+#createNewBtn a {
   color: white;
 }
 
-#decksContainer {
+#cardsContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

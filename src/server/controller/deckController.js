@@ -20,11 +20,8 @@ deckController.getAllDecks = async (req, res, next) => {
 
 deckController.createDeck = async (req, res, next) => {
     try {
-      // sanitize post data
-      const { 
-        user_id, 
-        title,
-      } = req.body;
+      const user_id = req.cookies.id;
+      const { title } = req.body;
       const data = {
         user_id, 
         title,

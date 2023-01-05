@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import Flashcard from '../../cards/Flashcard/Flashcard';
 import styles from './deckPage.module.css';
+import globalStyles from '../../global/globalStyles.module.css'
 
 const DeckPage = () => {
 
@@ -20,12 +21,12 @@ const DeckPage = () => {
 
   return (
     <>
-      <div id={styles.createNewCard}>
+      <div id={globalStyles.createNewBtn}>
         <Link to='/createCard'>
           Create New Card <strong>+</strong>
         </Link>
       </div>
-      <div id={styles.cardsContainer}>
+      <div id={globalStyles.cardsContainer}>
         {flashcardsArr.map((flashcard) => (
           <Flashcard data={flashcard} key={uuid()} />
         ))}
