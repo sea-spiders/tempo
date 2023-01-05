@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 const FlashCard = () => {
   const { id } = useParams();
-  console.log(id);
   const [cardData, setCardData] = useState({});
   const [nextCard, setnextCard] = useState({});
   const [showFront, setShowFront] = useState(true);
@@ -21,7 +20,6 @@ const FlashCard = () => {
       withCredentials: true,
       url: `http://localhost:8080/api/cards/${id}`,
     }).then((res) => {
-      console.log(res.data);
       setCardData(res.data);
     });
   }, []);
@@ -33,8 +31,6 @@ const FlashCard = () => {
       withCredentials: true,
       url: `http://localhost:8080/api/cards/nextCard/${id}`,
     }).then((res) => {
-      console.log(res.data);
-      console.log('checking for res.data', res.data);
       setnextCard(res.data);
     });
   }, []);

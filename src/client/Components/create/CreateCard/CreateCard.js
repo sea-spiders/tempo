@@ -12,6 +12,7 @@ const CreateCard = () => {
   function cb() {
     fetch('http://localhost:8080/api/cards', {
       method: 'POST',
+      // FIX USER ID----------------------------------------
       body: JSON.stringify({ front, user_id: 1, back, title }),
       headers: {
         Accept: 'application/json',

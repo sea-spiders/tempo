@@ -15,7 +15,6 @@ user.addUser = async (args) => {
       VALUES ($1, $2, $3, $4)
       RETURNING _id;`;
       const data = await pool.query(sql, arr);
-      console.log(data.rows);
       return data.rows[0]._id;
     } catch (err) {
       console.log('addUser', err);

@@ -18,10 +18,14 @@ card.readCard = async (id) => {
 // Read all cards will need to get passed the deck id in the fetch/the route endpoint so it knows the WHERE it is actually searching
 // Did not finish setting up so if their is an error with grabing page look here
 //Will eventually need read all cards to select from a where deck // WHERE deck_id=$1 ;
-card.readAllCards = async () => {
+card.readAllCards = async (user_id, deck_id) => {
     try {
+      //seeing our cookie
       const sql = `SELECT *
-      FROM cards`;
+      FROM cards
+      WHERE user_id=${user_id}
+      AND
+      deck_id=${deck_id}`;
       const data = await pool.query(sql);
       return data.rows;
     } catch (err) {

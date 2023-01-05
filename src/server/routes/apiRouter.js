@@ -13,8 +13,7 @@ router.get('/cards/:id', cardController.getCard, (req, res, next) => {
   res.status(200).json(res.locals.getCard);
 });
 
-router.get('/getAllCards', cardController.getAllCards, (req, res, next) => {
-  console.log(res.locals.getAllCards)
+router.get('/getCardsInDeck/:id', cardController.getAllCards, (req, res, next) => {
   res.status(200).json(res.locals.getAllCards);
 });
 
@@ -30,7 +29,6 @@ router.delete('/cards/:id', cardController.deleteCard, (req, res, next) => {
 
 // see all decks
 router.get('/getAllDecks', deckController.getAllDecks, (req, res, next) => {
-  console.log(res.locals.getAllDecks)
   res.status(200).json(res.locals.getAllDecks);
 });
 

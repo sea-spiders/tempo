@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './card.module.css';
+import styles from './Flashcard.module.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -11,10 +11,10 @@ const Card = ({ data }) => {
     <>
       
         <Link to={`/flashcard/${_id}`} >
-        <div className={`${styles.backgroundGrey}`}>
-        <div className={`${styles.title}`}>{title ?? 'no title'}</div>
-        <div className={`${styles.front}`}>{front ?? 'no front'}</div>
-        </div>
+          <div className={`${styles.backgroundGrey}`}>
+            <div className={`${styles.title}`}>{title ?? 'no title'}</div>
+            <div className={`${styles.front}`}>{front ?? 'no front'}</div>
+          </div>
         </Link>
     </>
   );

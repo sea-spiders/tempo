@@ -50,7 +50,13 @@ cardController.getCard = async (req, res, next) => {
 
 cardController.getAllCards = async (req, res, next) => {
   try {
-    const row = await cardDb.readAllCards();
+    // console.log('res.cookies: ', res.cookies);
+    // console.log('req.cookies: ', req.cookies);
+    // console.log('res.headers: ', res.headers);
+    
+    const user_id = req.cookies.id;
+    const deck_id = req.params.id;
+    const row = await cardDb.readAllCards(user_id, deck_id);
     // res status here
     res.locals.getAllCards = row;
     return next();

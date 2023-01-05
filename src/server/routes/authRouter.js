@@ -5,7 +5,8 @@ require('../auth.js');
 
 router.get('/user', (req, res) => {
   // req.user is the parsed jwt containing user information
-  console.log('user info', req.user);
+  //console.log('user info', req.user);
+  req.user ? res.cookie('id', req.user._id): null;
   res.status(200).json(req.user ? req.user : null);
 });
 

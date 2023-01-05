@@ -5,10 +5,11 @@ const deck = {}
 /// Deck will need to be able to be able to read all decks, click into?, delete? 
 
 // Read all decks for when we enter homepage and it shows all decks tied to user
-deck.readAllDecks = async () => {
+deck.readAllDecks = async (user_id) => {
   try {
     const sql = `SELECT *
-    FROM decks;`;
+    FROM decks 
+    WHERE user_id=${user_id};`;
     const data = await pool.query(sql);
     return data.rows;
   } catch (err) {
