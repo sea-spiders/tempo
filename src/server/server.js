@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const apiRouter = require('./routes/apiRouter.js');
 const authRouter = require('./routes/authRouter.js');
+const cookieParser = require('cookie-parser');
 
 const session = require('express-session'); // Required for OAuth Session
 
@@ -24,6 +25,7 @@ app.use(passport.authenticate('session'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser())
 
 // To get around CORS we normally set response header 
 // However, when ussing cookies many browsers do not allow Access-Control-Allow-Origin '*'
@@ -36,6 +38,7 @@ app.use(
 );
 
 // Static index file
+//possible send to cookieController here or do the cookie function here
 app.get('/', (req, res, next) => {
   res.sendFile(path.resolve(__dirname, './dist/index.html'));
 });

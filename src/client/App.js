@@ -6,10 +6,10 @@ import { setEmail, setPicture } from './Redux/slices/userSlice';
 import LandingPage from './Components/pages/LandingPage/LandingPage';
 import Home from './Components/pages/Home/Home';
 import Navbar from './Components/global/Navbar/Navbar';
-import DecksContainer from './Components/cards/DecksContainer/DecksContainer';
 import CreateDeck from './Components/create/CreateDeck/CreateDeck';
 import CreateCard from './Components/create/CreateCard/CreateCard';
 import FlashCard from './Components/cards/FlashcardDetails/FlashcardDetails';
+import DeckPage from './Components/pages/DeckPage/DeckPage';
 
 const App = () => {
   const leftItems = {
@@ -22,7 +22,7 @@ const App = () => {
     const response = axios({
       method: 'get',
       withCredentials: true,
-      url: 'http://localhost:8080/auth/user',
+      url: '/auth/user',
     }).then((res) => {
       if (res.data) {
         dispatch(setEmail(res.data.email));
@@ -50,6 +50,7 @@ const App = () => {
               <Route exact path="/home" element={<Home />} />
               <Route exact path="/createDeck" element={<CreateDeck />} />
               <Route exact path="/createCard" element={<CreateCard />} />
+              <Route exact path="/deck-page" element={<DeckPage />} />
               <Route exact path="/flashcard/:id" element={<FlashCard />} />
             </Routes>
           </div>

@@ -13,7 +13,7 @@
   color: white;
 }
 
-#deckContainer {
+#decksContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

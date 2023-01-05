@@ -5,9 +5,8 @@ const deckController = {};
 deckController.getAllDecks = async (req, res, next) => {
   //console.log('inside get all decks');
   try {
-    const row = await deckDb.readAllDecks();
-
-    // res status here
+    const user_id = req.cookies.id;
+    const row = await deckDb.readAllDecks(user_id);
     res.locals.getAllDecks = row;
     return next();
   } catch (err) {
