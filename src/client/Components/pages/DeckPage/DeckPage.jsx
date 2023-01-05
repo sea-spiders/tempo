@@ -22,7 +22,7 @@ const DeckPage = () => {
   return (
     <>
       <div id={globalStyles.createNewBtn}>
-        <Link to='/createCard'>
+        <Link to='/createCard' state={{ deckId }}>
           Create New Card <strong>+</strong>
         </Link>
       </div>

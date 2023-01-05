@@ -49,11 +49,7 @@ cardController.getCard = async (req, res, next) => {
 }
 
 cardController.getAllCards = async (req, res, next) => {
-  try {
-    // console.log('res.cookies: ', res.cookies);
-    // console.log('req.cookies: ', req.cookies);
-    // console.log('res.headers: ', res.headers);
-    
+  try {  
     const user_id = req.cookies.id;
     const deck_id = req.params.id;
     const row = await cardDb.readAllCards(user_id, deck_id);
@@ -71,21 +67,9 @@ cardController.getAllCards = async (req, res, next) => {
 
 cardController.createCard = async (req, res, next) => {
   try {
-    const { 
-      user_id, 
-      title, 
-      front, 
-      back, 
-      deck_id,
-     } = req.body;
-
-    const data = {
-      user_id, 
-      title, 
-      front, 
-      back, 
-      deck_id,
-    };
+    const user_id = req.cookies.id;
+    const { title, front, back, deck_id } = req.body;
+    const data = { user_id, title, front, back, deck_id };
 
     const row = await cardDb.createCard(data);
   
