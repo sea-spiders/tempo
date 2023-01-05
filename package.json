@@ -22,6 +22,7 @@
     "css-loader": "^6.7.3",
     "express-session": "^1.17.3",
     "file-loader": "^6.2.0",
+    "moxios": "^0.4.0",
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
