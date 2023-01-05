@@ -15,7 +15,6 @@ const DeckPage = () => {
   const [flashcardsArr, setflashcardsArr] = useState([]);
 
   useEffect(() => {
-    console.log('inside axios')
     axios.get(`/api/getCardsInDeck/${deckId}`).then(({ data }) => setflashcardsArr(data))
   }, []);
 
