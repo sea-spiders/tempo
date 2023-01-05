@@ -20,7 +20,7 @@ const LandingPage = () => {
           <a
             className="col align-items-center"
             id={styles.LandingPageLogin}
-            href={`http://localhost:8080/auth/google`}
+            href={`/auth/google`}
           >
             log in
           </a>

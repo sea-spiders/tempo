@@ -10,7 +10,7 @@ const CreateCard = () => {
   const navigate = useNavigate();
 
   function cb() {
-    fetch('http://localhost:8080/api/cards', {
+    fetch('8080/api/cards', {
       method: 'POST',
       // FIX USER ID----------------------------------------
       body: JSON.stringify({ front, user_id: 1, back, title }),
