@@ -18,7 +18,7 @@ const FlashCard = () => {
     const response = axios({
       method: 'get',
       withCredentials: true,
-      url: `http://localhost:8080/api/cards/${id}`,
+      url: `/api/cards/${id}`,
     }).then((res) => {
       setCardData(res.data);
     });
@@ -29,7 +29,7 @@ const FlashCard = () => {
     const response = axios({
       method: 'get',
       withCredentials: true,
-      url: `http://localhost:8080/api/cards/nextCard/${id}`,
+      url: `/api/cards/nextCard/${id}`,
     }).then((res) => {
       setnextCard(res.data);
     });
@@ -39,7 +39,7 @@ const FlashCard = () => {
     const response = axios({
       method: 'delete',
       withCredentials: true,
-      url: `http://localhost:8080/api/cards/${id}`,
+      url: `/api/cards/${id}`,
     }).then((res) => {
       window.location.href = `/home`;
     });
