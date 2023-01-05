@@ -5,10 +5,6 @@ const deckController = require('../controller/deckController');
 
 //CARD ROUTES
 
-router.get('/cards/nextCard/:id', cardController.nextCard, (req, res, next) => {
-  res.status(200).json(res.locals.nextCard);
-});
-
 router.get('/cards/:id', cardController.getCard, (req, res, next) => {
   res.status(200).json(res.locals.getCard);
 });
@@ -24,6 +20,10 @@ router.post('/cards', cardController.createCard, (req, res, next) => {
 router.delete('/cards/:id', cardController.deleteCard, (req, res, next) => {
   res.status(200).json(res.locals.deleteCard);
 })
+
+// router.get('/cards/nextCard/:id', cardController.nextCard, (req, res, next) => {
+//   res.status(200).json(res.locals.nextCard);
+// });
 
 // DECK ROUTES
 

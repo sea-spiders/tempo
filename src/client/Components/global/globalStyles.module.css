@@ -1,4 +1,5 @@
 #createNewBtn {
+  cursor: pointer;
   background-color: #8fa582;
   color: white;
   font-family: 'Roboto', sans-serif;
@@ -35,6 +36,7 @@
 }
 
 #addBtn {
+  cursor: pointer;
   margin-bottom: 15px;
   padding: 10px 10px;
   width: 20%;
@@ -51,7 +53,7 @@
 
 #addBtn span {
   font-weight: bolder;
-  font-size: 1.2rem;
+  font-size: 12rem;
 }
 
 .cardBackgroundGrey {

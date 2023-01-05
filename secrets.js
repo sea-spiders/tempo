@@ -6,5 +6,5 @@ module.exports = {
     GOOGLE_CLIENT_SECRET: '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',
     SESSION_SECRET: 'OAGDGLK2T4GWKSD09253LKF2457KITRSL',
     DEBUG: false,
-    PG_URI: `postgres://ybcnlaqk:${this.DB_PASSWORD}@berry.db.elephantsql.com/ybcnlaqk`,
+    PG_URI: `postgres://ybcnlaqk:hkMDROig8AmDlfav3m2XuF365IUdSKCh@berry.db.elephantsql.com/ybcnlaqk`,
   };

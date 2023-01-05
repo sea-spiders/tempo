@@ -2,32 +2,6 @@ const cardDb = require('../../db/cardDb');
 
 const cardController = {};
 
-cardController.nextCard = async (req, res, next) => {
-    try {
-
-    const _id = req.params.id;
-    const row = await cardDb.readAllCards();
-    const ids = row.map(element => {
-      return element._id; 
-    })
-
-    let idx = ids.findIndex((element) => {
-      return element === Number(_id);  
-    }); 
-    
-    const newIdx = (idx + 1) % ids.length; 
-
-    res.locals.nextCard = row[newIdx]._id;
-    return next();
-  } catch (err) {
-      next({
-        log: 'error getting cards',
-        status: 500,
-        message: { err: err },
-      });
-    }
-}
-
 cardController.getCard = async (req, res, next) => {
   try {
     const _id = req.params.id;
@@ -127,5 +101,31 @@ cardController.deleteCard = async (req, res, next) => {
   }
 }
 */
+
+// cardController.nextCard = async (req, res, next) => {
+//     try {
+
+//     const _id = req.params.id;
+//     const row = await cardDb.readAllCards();
+//     const ids = row.map(element => {
+//       return element._id; 
+//     })
+
+//     let idx = ids.findIndex((element) => {
+//       return element === Number(_id);  
+//     }); 
+    
+//     const newIdx = (idx + 1) % ids.length; 
+
+//     res.locals.nextCard = row[newIdx]._id;
+//     return next();
+//   } catch (err) {
+//       next({
+//         log: 'error getting cards',
+//         status: 500,
+//         message: { err: err },
+//       });
+//     }
+// }
 
 module.exports = cardController;
